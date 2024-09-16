@@ -1,0 +1,7 @@
+{
+    "hardhat": {
+        "MYERC20": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+        "MYERC721": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+        "DutchAuction": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+    }
+}

@@ -1,6 +1,6 @@
 const hre = require("hardhat");
-const { expect, assert } = require("chai");
-const { extendConfig } = require("hardhat/config");
+const { expect } = require("chai");
+
 describe("MYERC20", () => {
     let erc20
     let deployer;

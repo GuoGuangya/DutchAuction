@@ -24,21 +24,22 @@ contract DutchAuction is Ownable {
     // 拍卖物品NFT
     struct Auction {
         address owner;
+        IERC20 token;
         IERC721 nft;
         uint nftId;
-        IERC20 token;
-        uint startTimestamp;
-        uint endTimestamp;
-        bool buyed;
+        
         uint startPrice;
         uint descentRate;
+        uint64 startTimestamp;
+        uint64 endTimestamp;
+        bool buyed;
     }
 
-    uint public AUCTION_MIN_DURACTION = 3 days;
-    uint public AUCTION_MAX_DURACTION = 7 days;
+    uint constant public AUCTION_MIN_DURACTION = 3 days;
+    uint constant public AUCTION_MAX_DURACTION = 7 days;
 
     Auction[] public auctions;
-    mapping(uint => mapping(address => uint)) bids;
+    mapping(uint => mapping(address => uint)) public bids;
 
     constructor() Ownable(_msgSender()) {}
 
@@ -57,8 +58,8 @@ contract DutchAuction is Ownable {
         uint _nftId,
         address _token,
         uint _startPrice,
-        uint _startTimestamp,
-        uint _endTimestamp,
+        uint64 _startTimestamp,
+        uint64 _endTimestamp,
         uint _descentRate
     ) external onlyOwner {
         require(address(0) != _nft, "nft address invalid");
@@ -126,7 +127,7 @@ contract DutchAuction is Ownable {
             aution.startTimestamp > block.timestamp,
             "_startTimestamp < now"
         );
-        aution.endTimestamp = block.timestamp;
+        aution.endTimestamp = uint64(block.timestamp);
         emit CancelAuction(_aid);
     }
 

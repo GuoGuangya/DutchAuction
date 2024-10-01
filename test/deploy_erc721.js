@@ -1,5 +1,5 @@
 const hre = require("hardhat");
-const { expect, assert } = require("chai");
+const { expect } = require("chai");
 
 describe("MYERC721", () => {
     let erc721
